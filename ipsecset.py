@@ -199,8 +199,10 @@ def insert(args):
     l=[]
     if len(sys.argv)>1:
         args=sys.argv[1:]
-        #命令传入的参数得是cp936的
-        args=map(lambda x: x.decode('cp936'),args)
+        try:
+            args=map(lambda x: x.decode('utf-8'),args)
+        except:
+            args=map(lambda x: x.decode('cp936'),args)
         l=analyze_cmd(args)
     elif args:
         l=analyze_dict(args)
